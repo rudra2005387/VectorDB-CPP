@@ -350,7 +350,8 @@ VectorDB-CPP/
 # Screenshots
 
 ![alt text](screencapture-localhost-8080-2026-05-08-19_12_45.png)
----
+ ![alt text](screencapture-localhost-8080-2026-05-08-19_59_39.png)
+---![alt text](screencapture-localhost-8080-2026-05-08-20_02_56.png)
 
 # Contact & Support
 

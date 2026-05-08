@@ -1,102 +1,39 @@
-# VectorDB-CPP — Custom Vector Database with RAG (C++)
+# VectorDB-CPP
 
-A hands-on implementation of a **Vector Database built from scratch in C++**, designed to understand how modern semantic search systems actually work internally.
+Production-style semantic search and Retrieval-Augmented Generation (RAG) system built from scratch in C++ using vector embeddings, HNSW indexing, and local LLM integration.
 
-This project combines **multiple search algorithms (HNSW, KD-Tree, Brute Force)** with a **Retrieval-Augmented Generation (RAG)** pipeline powered by a local LLM using Ollama.
-
----
-
-## 🚀 Why I Built This
-
-Most developers use tools like Pinecone or Weaviate without understanding what happens behind the scenes.
-I built this project to explore:
-
-* How high-dimensional vector search works
-* Why HNSW is used in production systems
-* How embeddings + retrieval + LLMs form a complete RAG pipeline
+This project explores how modern AI retrieval systems and vector databases work internally instead of relying only on managed services like Pinecone or Weaviate.
 
 ---
 
-## ✨ Key Features
+# Installation
 
-* 🔍 **Multiple Search Algorithms**
+## Clone the Repository
 
-  * HNSW (fast, scalable)
-  * KD-Tree (exact search)
-  * Brute Force (baseline comparison)
-
-* 📏 **Distance Metrics**
-
-  * Cosine Similarity
-  * Euclidean Distance
-  * Manhattan Distance
-
-* 📊 **Visualization**
-
-  * 2D PCA scatter plot to visualize semantic clustering
-
-* 🧠 **Real Embeddings**
-
-  * Uses `nomic-embed-text` via Ollama (768D vectors)
-
-* 🤖 **RAG Pipeline**
-
-  * Ask questions on your own documents
-  * Retrieves relevant chunks using HNSW
-  * Generates answers using a local LLM
-
-* 🌐 **REST API**
-
-  * Insert, delete, search, benchmark
-  * Document ingestion + question answering
-
----
-
-## 🧠 System Flow
-
-```
-User Input (Text)
-      ↓
-Embedding (Ollama)
-      ↓
-Vector Representation (768D)
-      ↓
-HNSW / KD-Tree Search
-      ↓
-Top-K Similar Results
-      ↓
-LLM (Ollama - llama3.2)
-      ↓
-Final Answer (RAG)
+```bash
+git clone https://github.com/rudra2005387/VectorDB-CPP.git
 ```
 
 ---
 
-## 🛠️ Tech Stack
+## Install Dependencies
 
-* **C++ (Core Engine)**
-* **HNSW / KD-Tree / Brute Force Algorithms**
-* **Ollama (Local LLM + Embeddings)**
-* **cpp-httplib (HTTP Server)**
-* **HTML + JS (Frontend UI)**
+Required:
+- Git
+- MSYS2 (for g++)
+- Ollama
 
 ---
 
-## ⚙️ Setup (Windows)
-
-### 1. Install Dependencies
-
-* MSYS2 (for g++)
-* Git
-* Ollama
-
-### 2. Install Compiler
+## Install Compiler
 
 ```bash
 pacman -S mingw-w64-ucrt-x86_64-gcc
 ```
 
-### 3. Install Models
+---
+
+## Install Required Models
 
 ```bash
 ollama pull nomic-embed-text
@@ -105,86 +42,318 @@ ollama pull llama3.2
 
 ---
 
-## ▶️ Run the Project
+# Run the Project
+
+Compile:
 
 ```bash
 g++ -std=c++17 -O2 main.cpp -o db -lws2_32
+```
+
+Run:
+
+```bash
 ./db
 ```
 
-Open in browser:
+---
 
-```
+# Open the Application
+
+```text
 http://localhost:8080
 ```
 
 ---
 
-## 🧪 How to Use
+# Overview
 
-### 🔍 Search
-
-Try queries like:
-
-* "binary tree"
-* "pizza"
-* "football"
-
-Compare algorithms and see how results differ.
-
----
-
-### 📄 Add Documents
-
-* Paste any text (notes, articles)
-* System converts into embeddings
-* Stored in vector index
+VectorDB-CPP combines:
+- Semantic vector search
+- High-dimensional indexing
+- Approximate nearest-neighbor retrieval
+- Multiple search algorithms
+- Retrieval-Augmented Generation (RAG)
+- Local LLM inference
+- REST APIs
+- Document-based AI question answering
 
 ---
 
-### 🤖 Ask AI (RAG)
+# Tech Stack
 
-* Ask questions based on inserted documents
-* System retrieves relevant chunks
-* LLM generates contextual answers
+## Core Technologies
+- C++
+- HTML
+- JavaScript
 
 ---
 
-## 📁 Project Structure
+## Search Algorithms
+- HNSW
+- KD-Tree
+- Brute Force
 
+---
+
+## AI & Embeddings
+- Ollama
+- nomic-embed-text
+- llama3.2
+
+---
+
+## Backend APIs
+- cpp-httplib
+
+---
+
+# Project Description
+
+Most developers use vector databases and AI retrieval frameworks without understanding how semantic retrieval systems actually work internally.
+
+I built this project to explore:
+- How vector similarity search works
+- Why HNSW is used in production retrieval systems
+- ANN vs exact-search tradeoffs
+- How embeddings + retrieval + LLMs form modern RAG systems
+- Backend performance and indexing challenges in high-dimensional search systems
+
+This project helped me gain hands-on experience with backend systems, vector indexing, retrieval pipelines, and AI infrastructure concepts.
+
+---
+
+# Features
+
+## Semantic Search Engine
+- Supports semantic similarity search across 10K+ embeddings
+- High-dimensional vector indexing (768D vectors)
+- Fast nearest-neighbor retrieval workflows
+
+---
+
+## Multiple Search Algorithms
+Implemented and benchmarked:
+- HNSW (Approximate Nearest Neighbor Search)
+- KD-Tree Search
+- Brute Force Search
+
+---
+
+## Distance Metrics
+Supports:
+- Cosine Similarity
+- Euclidean Distance
+- Manhattan Distance
+
+---
+
+## Retrieval-Augmented Generation (RAG)
+Supports document-based AI question answering:
+1. Convert documents into embeddings
+2. Retrieve semantically relevant chunks
+3. Inject retrieved context into the LLM
+4. Generate grounded responses
+
+---
+
+## REST API Support
+Backend APIs support:
+- Vector insertion
+- Semantic retrieval
+- Benchmark testing
+- Document ingestion
+- RAG queries
+
+---
+
+## Visualization
+Includes PCA-based visualization to inspect semantic clustering patterns between embeddings.
+
+---
+
+# System Architecture
+
+```text
+User Query / Document
+          ↓
+Embedding Generation (Ollama)
+          ↓
+768D Vector Representation
+          ↓
+Vector Indexing
+(HNSW / KD-Tree / Brute Force)
+          ↓
+Top-K Semantic Retrieval
+          ↓
+Context Injection
+          ↓
+LLM Response Generation
+(llama3.2)
+          ↓
+Final RAG Output
 ```
+
+---
+
+# How the System Works
+
+1. User enters text or uploads documents
+2. Ollama converts text into vector embeddings
+3. Embeddings are indexed using HNSW / KD-Tree
+4. Semantic retrieval finds relevant matches
+5. Retrieved context is passed into the local LLM
+6. The system generates grounded responses
+
+---
+
+# Example Search Queries
+
+```text
+binary tree
+football
+machine learning
+pizza
+```
+
+---
+
+# Example RAG Questions
+
+```text
+What is a binary search tree?
+Explain how neural networks work.
+Summarize the uploaded document.
+```
+
+---
+
+# Model Usage
+
+## Embedding Model
+
+```text
+nomic-embed-text
+```
+
+Used for generating 768-dimensional semantic vector embeddings.
+
+---
+
+## LLM Model
+
+```text
+llama3.2
+```
+
+Used for Retrieval-Augmented Generation and contextual response generation.
+
+---
+
+# Benchmark Goals
+
+This project was used to compare:
+- Exact vs approximate nearest-neighbor search
+- Retrieval latency
+- High-dimensional indexing performance
+- Scalability tradeoffs between indexing approaches
+
+---
+
+# Output
+
+The system can:
+- Convert documents into semantic vector embeddings
+- Retrieve contextually similar documents
+- Compare multiple vector search algorithms
+- Generate contextual AI responses using RAG
+- Perform semantic document-based question answering
+- Benchmark retrieval performance across indexing methods
+
+---
+
+# Notes
+
+## Search Performance
+HNSW provides significantly faster retrieval compared to brute-force search for large embedding datasets.
+
+---
+
+## KD-Tree Limitations
+KD-Trees become less efficient in high-dimensional vector spaces compared to ANN-based approaches like HNSW.
+
+---
+
+## Local LLM Inference
+The project uses Ollama for local inference, removing dependency on external cloud APIs.
+
+---
+
+## Slow Responses
+
+Use smaller models for lower resource usage:
+
+```bash
+llama3.2:1b
+```
+
+---
+
+## Ollama Server
+
+If Ollama is not running:
+
+```bash
+ollama serve
+```
+
+---
+
+# Engineering Challenges
+
+Some of the engineering challenges explored during development:
+- Efficient nearest-neighbor retrieval in high-dimensional spaces
+- ANN vs exact-search tradeoffs
+- HNSW graph traversal optimization
+- Semantic chunk retrieval quality
+- Backend API integration with local LLM inference
+- Managing retrieval latency and response quality
+
+---
+
+# Key Learnings
+
+Through this project I learned:
+- How vector retrieval systems scale
+- Why HNSW is preferred for ANN search
+- Limitations of KD-Trees in high-dimensional spaces
+- How RAG pipelines improve answer grounding
+- Backend architecture considerations for AI systems
+- Performance tradeoffs in semantic retrieval systems
+
+---
+
+# Project Structure
+
+```text
 VectorDB-CPP/
+│
 ├── main.cpp
 ├── httplib.h
 ├── index.html
-└── README.md
+├── README.md
+└── assets/
 ```
 
 ---
 
-## ⚡ Key Learnings
+# Screenshots
 
-* HNSW enables near O(log N) search in high dimensions
-* KD-Tree struggles with high-dimensional data
-* Vector search + LLM = powerful AI systems
-* RAG improves accuracy by grounding responses in real data
-
+![alt text](screencapture-localhost-8080-2026-05-08-19_12_45.png)
 ---
 
-## ⚠️ Common Issues
+# Contact & Support
 
-* Ollama not running → `ollama serve`
-* Port 8080 busy → kill process
-* Slow responses → use smaller model (`llama3.2:1b`)
+If you have any questions or need support, feel free to reach out to me:
 
----
-
-## 📌 Future Improvements
-
-* User authentication
-* Persistent storage (disk-based index)
-* React frontend
-* Deployment (cloud + Docker)
-
----
-
+Email: rudraprataprai424@gmail.com
